@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ChannelList";
+}
+
+<h2>Channel List</h2>
+
+@if (TempData["Error"] != null)
+{
+    <p class="text-danger">@TempData["Error"]</p>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th>Channel ID</th>
+            <th>Channel Name</th>
+            <th>Established Year</th>
+            <th>Country</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var channel in Model)
+        {
+            <tr>
+                <td>@channel.ChannelId</td>
+                <td>@channel.ChannelName</td>
+                <td>@channel.EstablishedYear</td>
+                <td>@channel.Country</td>
+                <td>
+                    <a href="@Url.Action("ChannelEdit", new { id = channel.ChannelId })" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", new { id = channel.ChannelId })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ChannelCreate")" class="btn btn-success">Add New Channel</a>

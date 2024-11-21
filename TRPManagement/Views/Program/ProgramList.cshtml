@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ProgramList";
+}
+
+<h1>Program List</h1>
+
+@if (TempData["Success"] != null)
+{
+    <p style="color: green;">@TempData["Success"]</p>
+}
+
+@if (TempData["Error"] != null)
+{
+    <p style="color: red;">@TempData["Error"]</p>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Channel Name</th>
+            <th>Programs</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var channel in Model)
+        {
+            <tr>
+                <td>@channel.ChannelName</td>
+                <td>
+                    <ul>
+                        @foreach (var program in channel.Programs)
+                        {
+                            <li>
+                                @program.ProgramName - TRP: @program.TRPScore - AirTime: @program.AirTime
+                                <a href="@Url.Action("ProgramEdit", new { id = program.ProgramId })" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="@Url.Action("Delete", new { id = program.ProgramId })" class="btn btn-sm btn-danger">Delete</a>
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("ProgramCreate")" class="btn btn-success">Add New Program</a>

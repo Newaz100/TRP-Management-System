@@ -1,0 +1,34 @@
+﻿@model TRPManagement.DTOs.ChannelDTO
+
+@{
+    ViewBag.Title = "ChannelCreate";
+}
+
+<h2>Create Channel</h2>
+
+@if (TempData["Error"] != null)
+{
+    <p class="text-danger">@TempData["Error"]</p>
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="ChannelName">Channel Name:</label>
+        <input type="text" value="@Model.ChannelName" name="ChannelName" class="form-control" placeholder="Channel Name" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.ChannelName)</span>
+    </div>
+    <div class="form-group">
+        <label for="EstablishedYear">Established Year:</label>
+        <input type="number" value="@Model.EstablishedYear" name="EstablishedYear" class="form-control" placeholder="Established Year" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.EstablishedYear)</span>
+    </div>
+    <div class="form-group">
+        <label for="Country">Country:</label>
+        <input type="text" value="@Model.Country" name="Country" class="form-control" placeholder="Country" />
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.Country)</span>
+    </div>
+    <input type="submit" value="Create" class="btn btn-success" />
+    <a href="@Url.Action("ChannelList")" class="btn btn-secondary">Cancel</a>
+</form>

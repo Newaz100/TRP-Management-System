@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Channel</h2>
+
+<p>Are you sure you want to delete this channel?</p>
+
+
+<div>
+    <p><strong>Channel Name:</strong> @Model.ChannelName</p>
+    <p><strong>Established Year:</strong> @Model.EstablishedYear</p>
+    <p><strong>Country:</strong> @Model.Country</p>
+</div>
+
+<form method="post" action="@Url.Action("DeleteConfirmed", "Channel", new { id = Model.ChannelId })">
+    @Html.AntiForgeryToken()  <!-- Add this line -->
+    <input type="submit" value="Yes, Delete" class="btn btn-danger" />
+    <a href="@Url.Action("ChannelList")" class="btn btn-secondary">Cancel</a>
+</form>
+

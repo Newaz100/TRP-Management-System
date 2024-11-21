@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "ChannelEdit";
+}
+
+<h2>Edit Channel</h2>
+
+@if (TempData["Error"] != null)
+{
+    <p class="text-danger">@TempData["Error"]</p>
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@Model.ChannelId" name="ChannelId" />
+    <div class="form-group">
+        <label for="ChannelName">Channel Name:</label>
+        <input type="text" value="@Model.ChannelName" name="ChannelName" class="form-control" placeholder="Channel Name" />
+        <span class="text-danger">@Html.ValidationMessage("ChannelName")</span>
+    </div>
+    <div class="form-group">
+        <label for="EstablishedYear">Established Year:</label>
+        <input type="number" value="@Model.EstablishedYear" name="EstablishedYear" class="form-control" placeholder="Established Year" />
+        <span class="text-danger">@Html.ValidationMessage("EstablishedYear")</span>
+    </div>
+    <div class="form-group">
+        <label for="Country">Country:</label>
+        <input type="text" value="@Model.Country" name="Country" class="form-control" placeholder="Country" />
+        <span class="text-danger">@Html.ValidationMessage("Country")</span>
+    </div>
+    <input type="submit" value="Save Changes" class="btn btn-success" />
+    <a href="@Url.Action("ChannelList")" class="btn btn-secondary">Cancel</a>
+</form>
+
